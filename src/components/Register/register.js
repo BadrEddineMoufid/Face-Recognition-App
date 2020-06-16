@@ -22,6 +22,7 @@ class Register extends React.Component {
         this.setState({ password: event.target.value })
     }
 
+    //sending register info to API for registering 
     onSubmitSignIn = ()=>{
         fetch('https://dry-refuge-71564.herokuapp.com/register',{
             method: 'post',

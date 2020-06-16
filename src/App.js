@@ -25,6 +25,7 @@ const particlesOptions = {
   }
 }
 
+//init state
 const initialState = {
     input: '',
     imageUrl:'',
@@ -46,6 +47,7 @@ class App extends Component {
     this.state = initialState;
   }
 
+  //setting state
   loadUser = (data) =>{
     this.setState({
       user: {
@@ -59,7 +61,7 @@ class App extends Component {
   }
 
   
-
+  //calculating face box
   calculateFaceLocation = (data) =>{
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
     const image = document.getElementById('inputimage');
@@ -77,15 +79,18 @@ class App extends Component {
     }
   }
 
+  //passing box 
   displayFaceBox = (box) =>{
     
     this.setState({box: box});
   }
 
+  //handeling input change
   onInputChange = (event) => {
     this.setState({input: event.target.value});
   }
 
+  //sending image to API for face recognition
   onButtonSubmit = () =>{
     this.setState({imageUrl: this.state.input})
     fetch('https://dry-refuge-71564.herokuapp.com/imageurl', {
@@ -97,6 +102,7 @@ class App extends Component {
     })
     .then(response => response.json())
     .then(response => {
+        //updating user user entries
         if(response){
           fetch('https://dry-refuge-71564.herokuapp.com/image', {
             method: 'put',
@@ -107,14 +113,17 @@ class App extends Component {
           })
           .then(response => response.json())
           .then(count => {
+            //updating state with the new num of entries from API
             this.setState(Object.assign(this.state.user, {entries: count}))
           })
-          .catch(console.log)
+          .catch(err=>console.log(err))
         }
+        //displaying the box arround face
         this.displayFaceBox(this.calculateFaceLocation(response))})
       .catch(err => console.log(err));
   }
 
+  //handeling signin and singout
   onRouteChange = (route) => {
     if(route === 'signout'){
       this.setState(initialState)

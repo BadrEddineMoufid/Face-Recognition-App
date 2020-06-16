@@ -1,5 +1,6 @@
 import React from 'react';
 
+//displaying user's name and rank aka num of entries
 const Rank = ({name, entries}) => {
     return(
         <div>

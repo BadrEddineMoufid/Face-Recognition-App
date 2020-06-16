@@ -9,6 +9,7 @@ class Signin extends React.Component {
         }
     }
 
+    //hendeling email and password change
     onEmailChange = (event)=>{
         this.setState({ signInEmail: event.target.value })
     }
@@ -17,6 +18,7 @@ class Signin extends React.Component {
         this.setState({ signInPassword: event.target.value })
     }
 
+    //sending login Info to APi for authenticating
     onSubmitSignIn = ()=>{
         fetch('https://dry-refuge-71564.herokuapp.com/signin',{
             method: 'post',
