@@ -1,3 +1,6 @@
+
+
+
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 
@@ -102,7 +105,7 @@ class App extends Component {
     })
     .then(response => response.json())
     .then(response => {
-        //updating user user entries
+        //updating  user entries
         if(response){
           fetch('https://dry-refuge-71564.herokuapp.com/image', {
             method: 'put',
