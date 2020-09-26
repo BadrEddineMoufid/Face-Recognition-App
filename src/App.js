@@ -1,6 +1,3 @@
-
-
-
 import React, { Component } from 'react';
 import Particles from 'react-particles-js';
 
@@ -114,7 +111,7 @@ class App extends Component {
               id: this.state.user.id
             })
           })
-          .then(response => response.json())
+          .then(response => {response.json(); console.log("response: "+response)})
           .then(count => {
             //updating state with the new num of entries from API
             this.setState(Object.assign(this.state.user, {entries: count}))
